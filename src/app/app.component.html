@@ -1,0 +1,33 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side">
+    <p>Test test test</p>
+    <p>
+
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p class="topbuttons">
+      <button mat-raised-button (click)="sidenav.toggle()" color="primary">History</button>
+      <button #htp mat-raised-button color="primary" class="htp">How to Play</button>
+    </p>
+
+    <h2>Sharenian PQ - Third Stage</h2>
+    <div class="playbutton">
+      <button class="play" mat-raised-button color="accent" (click)="toggleplay()">Play</button> 
+    </div>
+
+    <div *ngIf="is_playing" class="playcontent">
+      <div class="tries">
+        <p>Tries: {{tries}} / 7</p><br>
+      </div>
+      <div class="submit">
+        <button class="submit-button" mat-raised-button color="accent" (click)="submit()">Submit Answer</button>
+      </div>
+    </div>
+
+    
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

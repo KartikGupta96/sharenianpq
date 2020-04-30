@@ -1,0 +1,38 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+.topbuttons {
+    margin: 0;
+	padding: 0;
+}
+
+.htp {  
+    float:right;
+}
+
+h2{
+    display:flex;
+    justify-content: center;
+}
+
+.playbutton {
+    display:flex;
+    justify-content: center;
+}
+
+.tries{
+    padding:20px;
+    font-size:large;
+    display:flex;
+    justify-content: center;
+}
+
+.submit{
+    display:flex;
+    justify-content: center;
+}
