@@ -6,6 +6,9 @@
     right: 0;
   }
 
+.sidebar{
+    padding:10px;
+}
 .topbuttons {
     margin: 0;
 	padding: 0;
@@ -35,4 +38,38 @@ h2{
 .submit{
     display:flex;
     justify-content: center;
+    padding-bottom: 50px;
+}
+
+.statues{
+    display:flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.mid_left_statue{
+    padding-left: 100px;
+    padding-right:50px;
+}
+
+.mid_right_statue{
+    padding-left:50px;
+    padding-right:100px;
+}
+
+/*mat-sidenav-content{
+    background-image: url("../assets/background.png");
+}*/
+
+.mat-option{
+    min-height:55px; 
+}
+
+.answers{
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin: auto;
 }

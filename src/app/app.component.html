@@ -1,11 +1,9 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <p>Test test test</p>
-    <p>
-
-    </p>
+    <div class="sidebar">
+      <p>Test test test</p>
+    </div>
   </mat-sidenav>
-
   <mat-sidenav-content>
     <p class="topbuttons">
       <button mat-raised-button (click)="sidenav.toggle()" color="primary">History</button>
@@ -14,20 +12,77 @@
 
     <h2>Sharenian PQ - Third Stage</h2>
     <div class="playbutton">
-      <button class="play" mat-raised-button color="accent" (click)="toggleplay()">Play</button> 
+      <button class="play" mat-raised-button color="accent" *ngIf="!is_playing" (click)="toggleplay()">Play</button> 
     </div>
 
     <div *ngIf="is_playing" class="playcontent">
       <div class="tries">
         <p>Tries: {{tries}} / 7</p><br>
       </div>
+      <div class="statues">
+        <div class="left_statue"> 
+          <img src="../assets/left_statue.png">
+          <div>
+            <mat-form-field>
+              <mat-label>Select Offering</mat-label>
+              <mat-select [(value)]="item1">
+                <mat-option *ngFor="let item of items" [value]="item.value">
+                  <img src='{{item.img}}'> {{item.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mid_left_statue">
+          <img src="../assets/left_mid_statue.png">
+          <div>
+            <mat-form-field>
+              <mat-label>Select Offering</mat-label>
+              <mat-select [(value)]="item2">
+                <mat-option *ngFor="let item of items" [value]="item.value">
+                  <img src='{{item.img}}'> {{item.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mid_right_statue">
+          <img src="../assets/right_mid_statue.png">
+          <div>
+            <mat-form-field >
+              <mat-label>Select Offering</mat-label>
+              <mat-select [(value)]="item3">
+                <mat-option *ngFor="let item of items" [value]="item.value">
+                  <img src='{{item.img}}'> {{item.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="right_statue">
+          <img src="../assets/right_statue.png">
+          <div>
+            <mat-form-field>
+              <mat-label>Select Offering</mat-label>
+              <mat-select [(value)]="item4">
+                <mat-option *ngFor="let item of items" [value]="item.value">
+                  <img src='{{item.img}}'> {{item.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
       <div class="submit">
         <button class="submit-button" mat-raised-button color="accent" (click)="submit()">Submit Answer</button>
       </div>
     </div>
-
-    
-
+    <div *ngIf="try_submitted" class="answers">
+      <p style="white-space: pre;" class="answer_text">
+        {{output_text}}
+      </p>
+    </div>
+  
   </mat-sidenav-content>
 </mat-sidenav-container>
 
