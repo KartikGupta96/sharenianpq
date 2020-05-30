@@ -1,13 +1,12 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <div class="sidebar">
-      <p>Test test test</p>
+    <div class="sidebar" [innerHtml]="history">
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <p class="topbuttons">
       <button mat-raised-button (click)="sidenav.toggle()" color="primary">History</button>
-      <button #htp mat-raised-button color="primary" class="htp">How to Play</button>
+      <button #htp mat-raised-button color="primary" (click)="show_instructions()" class="htp">How to Play</button>
     </p>
 
     <h2>Sharenian PQ - Third Stage</h2>

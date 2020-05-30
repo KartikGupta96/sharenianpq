@@ -49,17 +49,18 @@ h2{
 
 .mid_left_statue{
     padding-left: 100px;
-    padding-right:50px;
+    
 }
 
 .mid_right_statue{
-    padding-left:50px;
+    
     padding-right:100px;
 }
 
-/*mat-sidenav-content{
-    background-image: url("../assets/background.png");
-}*/
+mat-sidenav-content{
+    background-image: url("../assets/background4.png");
+    background-size: 100% 100%;
+}
 
 .mat-option{
     min-height:55px; 
@@ -72,4 +73,21 @@ h2{
     align-items: center;
     width: 500px;
     margin: auto;
+}
+
+.history_image * {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.history_item {
+    border-bottom: 2px solid;
+}
+
+/deep/ .mat-select{
+    background-color: red;
+ }
+
+ /deep/ .mat-select-panel {
+    background-color: red;
 }

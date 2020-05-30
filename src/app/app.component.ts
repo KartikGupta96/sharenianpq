@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { generate } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
+import { OverlayService } from './services/overlay.service';
+import { OverlayReference } from './services/overlayreference';
+import { DomSanitizer } from '@angular/platform-browser';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'Sharenian PQ - Third Stage';
@@ -18,12 +22,13 @@ export class AppComponent implements OnInit {
     {value: '4', viewValue: 'Jr. Necki Drink', img: '../assets/wine.jpg'}
   ]
 
-  constructor() { }
+  constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer) { }
   is_playing:boolean = false;
   tries = 0;
   max_tries = 7;
   num:number;
   try_submitted:boolean = false
+  history = "";
 
   output_text:String = "";
 
@@ -32,18 +37,19 @@ export class AppComponent implements OnInit {
   item3 = this.items[1][1];
   item4 = this.items[1][1];
 
-  reset_game(){
+  private reset_game(){
     this.is_playing = false;
     this.tries = 0;
     this.item1 = undefined;
     this.item2 = undefined;
     this.item3 = undefined;
     this.item4 = undefined;
+    this.history = "";
   }
   //Function to generate a number with digits 1, 2, 3, 4
   //Since numbers are not easily generated without specific digits like python
   //each digit is randomly generated and combined together
-  generate_num() {
+  private generate_num() {
     var num = "";
     for (var i=0; i<4; i++){
       var digit = Math.floor(Math.random() * 4) + 1;
@@ -53,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   //Function used to compare the guess to the number
-  compare_nums(number, guess){
+  private compare_nums(number, guess){
     console.log(typeof number);
     console.log(typeof guess);
     console.log("my number = " + number)
@@ -90,7 +96,7 @@ export class AppComponent implements OnInit {
     return cowbull;
   }
 
-  toggleplay(){
+   toggleplay(){
     this.is_playing = true;
     //this.num = this.generate_num();
     this.num = 2111
@@ -98,7 +104,7 @@ export class AppComponent implements OnInit {
     //console.log(this.num);
   }
 
-  check_undefined(){
+  private check_undefined(){
     console.log("Hello")
     if(typeof this.item1 === "undefined" || typeof this.item2 === "undefined" || typeof this.item3 === "undefined" || typeof this.item4 === "undefined"){
       console.log("Undefined")
@@ -125,6 +131,7 @@ export class AppComponent implements OnInit {
       if ((cowbullcount[0] + cowbullcount[1]) == 0){
         console.log("No Vassal knows of this offering\n")
         this.output_text += "No Vassal knows of this offering\n"
+        this.add_history()
       }
       else{
         if (cowbullcount[1] != 0){
@@ -139,6 +146,7 @@ export class AppComponent implements OnInit {
           console.log(4-cowbullcount[0]-cowbullcount[1] + " have said it's an unknown offering")
           this.output_text += 4-cowbullcount[0]-cowbullcount[1] + " have said it's an unknown offering\n"
         }
+        this.add_history()
       }
       if (cowbullcount[1] == 4){
         this.reset_game();
@@ -156,8 +164,54 @@ export class AppComponent implements OnInit {
     }
   }
 
-  add_history(){
+  private check_item(item){
+    //console.log(item);
+    if(item == 1){
+      return '../assets/medal.jpg'
+    }
+    else if(item == 2){
+      return '../assets/scroll.jpg'
+    }
+    else if (item == 3) {
+      return '../assets/food.jpg'
+    }
+    else if (item == 4) {
+      return '../assets/wine.jpg'
+    }
+    else{
+      return ''
+    }
+  }
 
+  private add_history(){
+    var template = `<div class="history_item"><div class="history_image"><img src='item1'><img src='item2'><img src='item3'><img src='item4'></div>
+    <div><p>answers</p></div></div>`;
+    console.log(typeof template);
+    var asset_locations = [];
+    var guessed_items = [this.item1,this.item2,this.item3,this.item4];
+    console.log(guessed_items.length);
+    guessed_items.forEach(element => {
+      console.log(element);
+      asset_locations.push(this.check_item(element))
+    });
+    console.log(asset_locations);
+    
+    var temp1 = template.replace("item1", asset_locations[0]);
+    var temp2 = temp1.replace("item2", asset_locations[1]);
+    var temp3 = temp2.replace("item3", asset_locations[2]);
+    var entry = temp3.replace("item4", asset_locations[3]);
+    
+    /*for (var i = 0; i < asset_locations.length; i++){
+      var temp = "item" + (i+1)
+      var entry = template.replace(temp, asset_locations[i]);
+    }*/
+    console.log(entry);
+    this.history +=entry;
+    //template.replace("answers",);
+  }
+
+  show_instructions(){
+    let dialog_ref: OverlayReference = this.previewDialog.open();
   }
 
   ngOnInit(): void {
