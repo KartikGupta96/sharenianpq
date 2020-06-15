@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   is_playing:boolean = false;
   tries = 0;
   max_tries = 7;
-  num:number;
+  num:string;
   try_submitted:boolean = false
   history = "";
 
@@ -60,8 +60,8 @@ export class AppComponent implements OnInit {
 
   //Function used to compare the guess to the number
   private compare_nums(number, guess){
-    console.log(typeof number);
-    console.log(typeof guess);
+    //console.log(typeof number);
+    //console.log(typeof guess);
     console.log("my number = " + number)
     console.log("my guess = " + guess);
     var cowbull = [0,0]; //incorrect, correct
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
         cowbull[1]+=1;
       }
       else{
-        console.log("BLAH BLAH")
+       // console.log("BLAH BLAH")
         console.log("number[i] = " + number[i]);
         console.log("guess[i] = " + guess[i]);
         temp_number = temp_number + number[i];
@@ -82,9 +82,10 @@ export class AppComponent implements OnInit {
         console.log("tempguess = " + temp_guess)
       }
     }
-    console.log(temp_number);
-    //console.log(temp_guess);
-    for(var j=0; i<temp_guess.length;i++){
+    console.log("Outside loop tempnumber = " +temp_number);
+    console.log("outside loop tempnumber = " +temp_guess);
+    for(var j=0; j<temp_guess.length;j++){
+      console.log("For loop temp_guess at j:" + temp_guess[j])
       if (temp_number.includes(temp_guess[j])){
         cowbull[0]+= 1;
         temp_number = temp_number.replace(temp_guess[j], "0");
@@ -98,8 +99,8 @@ export class AppComponent implements OnInit {
 
    toggleplay(){
     this.is_playing = true;
-    //this.num = this.generate_num();
-    this.num = 2111
+    this.num = this.generate_num();
+    //this.num = "2232"
     this.try_submitted = false;
     //console.log(this.num);
   }
@@ -149,10 +150,10 @@ export class AppComponent implements OnInit {
         this.add_history()
       }
       if (cowbullcount[1] == 4){
-        this.reset_game();
         this.output_text = "";
         console.log("You won after " + this.tries.toString() + " tries! The number was "+ this.num);
         this.output_text += "You won after " + this.tries.toString() + " tries! The number was "+ this.num + "\n"
+        this.reset_game();
       }
       else{
         if (this.tries == this.max_tries){
@@ -207,6 +208,7 @@ export class AppComponent implements OnInit {
     }*/
     console.log(entry);
     this.history +=entry;
+    console.log(typeof this.output_text);
     //template.replace("answers",);
   }
 

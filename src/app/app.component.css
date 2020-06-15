@@ -53,7 +53,7 @@ h2{
 }
 
 .mid_right_statue{
-    
+    padding-left:100px;
     padding-right:100px;
 }
 
@@ -84,10 +84,15 @@ mat-sidenav-content{
     border-bottom: 2px solid;
 }
 
-/deep/ .mat-select{
+ .mat-select{
     background-color: red;
  }
 
- /deep/ .mat-select-panel {
+ .mat-select-panel {
     background-color: red;
+}
+
+.history_title{
+    padding: 10px;
+    align-items: center;
 }
