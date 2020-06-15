@@ -200,16 +200,17 @@ export class AppComponent implements OnInit {
     var temp1 = template.replace("item1", asset_locations[0]);
     var temp2 = temp1.replace("item2", asset_locations[1]);
     var temp3 = temp2.replace("item3", asset_locations[2]);
-    var entry = temp3.replace("item4", asset_locations[3]);
+    var temp4 = temp3.replace("item4", asset_locations[3]);
     
     /*for (var i = 0; i < asset_locations.length; i++){
       var temp = "item" + (i+1)
       var entry = template.replace(temp, asset_locations[i]);
     }*/
+    var temp_answer = this.output_text;
+    temp_answer = temp_answer.replace(/\n/g, "<br>")
+    var entry = temp4.replace("answers",temp_answer.toString());
     console.log(entry);
     this.history +=entry;
-    console.log(typeof this.output_text);
-    //template.replace("answers",);
   }
 
   show_instructions(){
