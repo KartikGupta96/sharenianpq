@@ -3,8 +3,7 @@
     <div class="history_title">
       <h1>History</h1>
     </div>
-    <div class="sidebar" [innerHtml]="history">
-    </div>
+    <ng-container #historycontainer></ng-container>
   </mat-sidenav>
   <mat-sidenav-content>
     <p class="topbuttons">
@@ -25,7 +24,7 @@
         <div class="left_statue"> 
           <img src="../assets/left_statue.png">
           <div>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Select Offering</mat-label>
               <mat-select [(value)]="item1">
                 <mat-option *ngFor="let item of items" [value]="item.value">
@@ -38,7 +37,7 @@
         <div class="mid_left_statue">
           <img src="../assets/left_mid_statue.png">
           <div>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Select Offering</mat-label>
               <mat-select [(value)]="item2">
                 <mat-option *ngFor="let item of items" [value]="item.value">
@@ -51,7 +50,7 @@
         <div class="mid_right_statue">
           <img src="../assets/right_mid_statue.png">
           <div>
-            <mat-form-field >
+            <mat-form-field appearance="outline">
               <mat-label>Select Offering</mat-label>
               <mat-select [(value)]="item3">
                 <mat-option *ngFor="let item of items" [value]="item.value">
@@ -64,7 +63,7 @@
         <div class="right_statue">
           <img src="../assets/right_statue.png">
           <div>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Select Offering</mat-label>
               <mat-select [(value)]="item4">
                 <mat-option *ngFor="let item of items" [value]="item.value">

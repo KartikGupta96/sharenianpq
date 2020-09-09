@@ -21,6 +21,10 @@
 h2{
     display:flex;
     justify-content: center;
+    font-family: 'vanadine';
+    font-size: 70px;
+    margin-bottom: 50px;
+    color: white
 }
 
 .playbutton {
@@ -33,6 +37,7 @@ h2{
     font-size:large;
     display:flex;
     justify-content: center;
+    color:white;
 }
 
 .submit{
@@ -45,11 +50,11 @@ h2{
     display:flex;
     justify-content: center;
     padding-bottom: 20px;
+    text-align:center;
 }
 
 .mid_left_statue{
     padding-left: 100px;
-    
 }
 
 .mid_right_statue{
@@ -75,24 +80,54 @@ mat-sidenav-content{
     margin: auto;
 }
 
-.history_image * {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-.history_item {
-    border-bottom: 2px solid;
-}
-
- .mat-select{
-    background-color: red;
+ ::ng-deep .mat-select{
+    color: white;
  }
 
- .mat-select-panel {
+/*.mat-select-panel {
     background-color: red;
 }
 
+.mat-form-field-flex{
+    background-color: red;
+}
+
+.mat-form-field{
+    /*background-color: red;
+    padding: 0;
+    margin: 0;
+}*/
+
+::ng-deep .mat-form-field-wrapper{
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+  }
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: white;
+}
+::ng-deep .mat-select-value-text {
+    color: white;
+  }
+  
+  ::ng-deep .mat-form-field-label{
+      color:black;
+  }
+
 .history_title{
-    padding: 10px;
+    margin: auto;
     align-items: center;
+    text-align: center;
+}
+
+mat-sidenav {
+    width: 300px;
+}
+
+h1{
+    margin-bottom: 0;
 }

@@ -41,12 +41,14 @@ import {MatTreeModule} from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { OverlayService } from './services/overlay.service';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InstructionsComponent,
     InstructionsComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

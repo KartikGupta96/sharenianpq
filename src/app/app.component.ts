@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentFactory, ComponentRef } from '@angular/core';
 import { generate } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
@@ -6,6 +6,7 @@ import { OverlayService } from './services/overlay.service';
 import { OverlayReference } from './services/overlayreference';
 import { DomSanitizer } from '@angular/platform-browser';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { HistoryComponent } from './components/history/history.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class AppComponent implements OnInit {
   title = 'Sharenian PQ - Third Stage';
+
+  @ViewChild('historycontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
   
   items = [
     {value: '1', viewValue: 'Medal of Valor', img: '../assets/medal.jpg'},
@@ -22,13 +25,14 @@ export class AppComponent implements OnInit {
     {value: '4', viewValue: 'Jr. Necki Drink', img: '../assets/wine.jpg'}
   ]
 
-  constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer) { }
+  constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer, private resolver: ComponentFactoryResolver) { }
   is_playing:boolean = false;
   tries = 0;
   max_tries = 7;
   num:string;
   try_submitted:boolean = false
   history = "";
+  componentList: any[] =[];
 
   output_text:String = "";
 
@@ -37,6 +41,7 @@ export class AppComponent implements OnInit {
   item3 = this.items[1][1];
   item4 = this.items[1][1];
 
+  //Resets game and destroys all components dynamically loaded.
   private reset_game(){
     this.is_playing = false;
     this.tries = 0;
@@ -44,7 +49,9 @@ export class AppComponent implements OnInit {
     this.item2 = undefined;
     this.item3 = undefined;
     this.item4 = undefined;
-    this.history = "";
+    this.componentList.forEach((comp) => comp.destroy());
+    console.log(this.componentList.length);
+    this.entry.clear();
   }
   //Function to generate a number with digits 1, 2, 3, 4
   //Since numbers are not easily generated without specific digits like python
@@ -97,14 +104,17 @@ export class AppComponent implements OnInit {
     return cowbull;
   }
 
+  //Toggles the Play button.
    toggleplay(){
     this.is_playing = true;
     this.num = this.generate_num();
     //this.num = "2232"
+    //this.num = "1134"
     this.try_submitted = false;
     //console.log(this.num);
   }
 
+  //function to check if no value was selected in the drop down.
   private check_undefined(){
     console.log("Hello")
     if(typeof this.item1 === "undefined" || typeof this.item2 === "undefined" || typeof this.item3 === "undefined" || typeof this.item4 === "undefined"){
@@ -130,22 +140,22 @@ export class AppComponent implements OnInit {
       //console.log(inc_value);
       var cowbullcount = this.compare_nums(this.num.toString(),inc_value)
       if ((cowbullcount[0] + cowbullcount[1]) == 0){
-        console.log("No Vassal knows of this offering\n")
-        this.output_text += "No Vassal knows of this offering\n"
+        console.log("No Vassal Knows Of This Offering\n")
+        this.output_text += "No Vassal Knows Of This Offering"
         this.add_history()
       }
       else{
         if (cowbullcount[1] != 0){
-          console.log(cowbullcount[1].toString() + "  agreed that the offering is correct")
-          this.output_text += cowbullcount[1].toString() + " agreed that the offering is correct\n"
+          console.log(cowbullcount[1].toString() + "  Agreed That The Offering Is Correct")
+          this.output_text += cowbullcount[1].toString() + " Agreed That The Offering Is Correct"
         }
         if (cowbullcount[0] != 0){
-          console.log(cowbullcount[0].toString() + " have declared the offering incorrect")
-          this.output_text += cowbullcount[0].toString() + " have declared the offering incorrect\n"
+          console.log(cowbullcount[0].toString() + " Have Declared The Offering Incorrect")
+          this.output_text += "\n" + cowbullcount[0].toString() + " Have Declared The Offering Incorrect"
         }
         if (cowbullcount[0] + cowbullcount[1] != 4){
-          console.log(4-cowbullcount[0]-cowbullcount[1] + " have said it's an unknown offering")
-          this.output_text += 4-cowbullcount[0]-cowbullcount[1] + " have said it's an unknown offering\n"
+          console.log(4-cowbullcount[0]-cowbullcount[1] + " Have Said It's An Unknown Offering")
+          this.output_text += "\n" + (4-cowbullcount[0]-cowbullcount[1]) + " Have Said It's An Unknown Offering"
         }
         this.add_history()
       }
@@ -168,16 +178,16 @@ export class AppComponent implements OnInit {
   private check_item(item){
     //console.log(item);
     if(item == 1){
-      return '../assets/medal.jpg'
+      return '../../../assets/medal.jpg'
     }
     else if(item == 2){
-      return '../assets/scroll.jpg'
+      return '../../../assets/scroll.jpg'
     }
     else if (item == 3) {
-      return '../assets/food.jpg'
+      return '../../../assets/food.jpg'
     }
     else if (item == 4) {
-      return '../assets/wine.jpg'
+      return '../../../assets/wine.jpg'
     }
     else{
       return ''
@@ -185,7 +195,7 @@ export class AppComponent implements OnInit {
   }
 
   private add_history(){
-    var template = `<div class="history_item"><div class="history_image"><img src='item1'><img src='item2'><img src='item3'><img src='item4'></div>
+    /*var template = `<div class="history_item"><div class="history_image"><img src='item1'><img src='item2'><img src='item3'><img src='item4'></div>
     <div><p>answers</p></div></div>`;
     console.log(typeof template);
     var asset_locations = [];
@@ -200,17 +210,51 @@ export class AppComponent implements OnInit {
     var temp1 = template.replace("item1", asset_locations[0]);
     var temp2 = temp1.replace("item2", asset_locations[1]);
     var temp3 = temp2.replace("item3", asset_locations[2]);
-    var temp4 = temp3.replace("item4", asset_locations[3]);
+    var temp4 = temp3.replace("item4", asset_locations[3]);*/
     
     /*for (var i = 0; i < asset_locations.length; i++){
       var temp = "item" + (i+1)
       var entry = template.replace(temp, asset_locations[i]);
     }*/
+
+    //this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(HistoryComponent);
+    const componentRef = this.entry.createComponent(factory);
+    this.componentList.push(componentRef);
+    console.log(this.componentList.length)
+    componentRef.instance.item1 = this.check_item(this.item1);
+    componentRef.instance.item2 = this.check_item(this.item2);
+    componentRef.instance.item3 = this.check_item(this.item3);
+    componentRef.instance.item4 = this.check_item(this.item4);
+    
     var temp_answer = this.output_text;
-    temp_answer = temp_answer.replace(/\n/g, "<br>")
-    var entry = temp4.replace("answers",temp_answer.toString());
-    console.log(entry);
-    this.history +=entry;
+    var answers = temp_answer.split("\n")
+    if (answers.length == 1){
+      componentRef.instance.answer1 = answers[0].toString();
+      componentRef.instance.answer2 = "";
+      componentRef.instance.answer3 = "";
+    } else if (answers.length == 2){
+      componentRef.instance.answer1 = answers[0].toString();
+      componentRef.instance.answer2 = answers[1].toString();
+      componentRef.instance.answer3 = "";
+    } else if (answers.length == 3){
+      componentRef.instance.answer1 = answers[0].toString();
+      componentRef.instance.answer2 = answers[1].toString();
+      componentRef.instance.answer3 = answers[2].toString();;
+    } else {
+      componentRef.instance.answer1 = "";
+      componentRef.instance.answer2 = "";
+      componentRef.instance.answer3 = "";
+    }
+    componentRef.instance.attempt = this.tries;
+    console.log(temp_answer.toString())
+    componentRef.changeDetectorRef.detectChanges();
+    /*let element: HTMLElement = <HTMLElement>componentRef.location.nativeElement;
+    element.getElementsByClassName 
+    element.style.borderBottom = "2px";
+    element.style.margin = "auto";*/
+    //console.log(entry);
+    //this.history +=entry;
   }
 
   show_instructions(){
