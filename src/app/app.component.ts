@@ -178,16 +178,16 @@ export class AppComponent implements OnInit {
   private check_item(item){
     //console.log(item);
     if(item == 1){
-      return '../../../assets/medal.jpg'
+      return 'assets/medal.jpg'
     }
     else if(item == 2){
-      return '../../../assets/scroll.jpg'
+      return 'assets/scroll.jpg'
     }
     else if (item == 3) {
-      return '../../../assets/food.jpg'
+      return 'assets/food.jpg'
     }
     else if (item == 4) {
-      return '../../../assets/wine.jpg'
+      return 'assets/wine.jpg'
     }
     else{
       return ''
