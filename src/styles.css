@@ -10,5 +10,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @font-face {
         font-family: vanadine;
-        src: url(assets/Vanadine-Bold.ttf) format("truetype")
+        src: url(assets/Vanadine-Bold.ttf) format("truetype");
+}
+
+@font-face{
+        font-family: micro_bold;
+        src: url(assets/MicroExtendFLF-Bold.ttf) format("truetype");
+}
+
+@font-face{
+        font-family: micro;
+        src: url(assets/MicroExtendFLF.ttf) format("truetype");
+}
+
+@font-face{
+        font-family: mala;
+        src: url(assets/Malatestian.ttf) format("truetype");
 }

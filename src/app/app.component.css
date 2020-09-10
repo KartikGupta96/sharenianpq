@@ -35,10 +35,11 @@ h2{
 
 .tries{
     padding:20px;
-    font-size:large;
+    font-size:30px;
     display:flex;
     justify-content: center;
     color:white;
+    font-family:micro;
 }
 
 .submit{
@@ -78,8 +79,11 @@ mat-sidenav-content{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 700px;
+    height: 200px;
     margin: auto;
+    font-size: 20px;
+    background-color:gray;
 }
 
  ::ng-deep .mat-select{
@@ -114,8 +118,9 @@ mat-sidenav-content{
 }
 ::ng-deep .mat-select-value-text {
     color: white;
+    font-family:'micro';
   }
-  
+
   ::ng-deep .mat-form-field-label{
       color:black;
   }
@@ -139,7 +144,8 @@ h1{
     color:white;
     width: 200px;
     height: 50px;
-    font-size: 20px;  
+    font-size: 25px;  
+    font-family: vanadine;
  }
 
  .mat-raised-button.mat-orange{
@@ -147,7 +153,8 @@ h1{
      color: black;
      width: 150px;
      height: 50px;
-     font-size: 15px;
+     font-size: 20px;
+     font-family: vanadine;
  }
 
  
