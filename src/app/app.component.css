@@ -131,11 +131,3 @@ mat-sidenav {
 h1{
     margin-bottom: 0;
 }
-
-.mat-raised-button.mat-black, .mat-flat-button.mat-black{
-    background-color: black;
-    color: white;
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
- }
