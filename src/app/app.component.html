@@ -7,13 +7,13 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <p class="topbuttons">
-      <button mat-raised-button (click)="sidenav.toggle()" color="primary">History</button>
-      <button #htp mat-raised-button color="primary" (click)="show_instructions()" class="htp">How to Play</button>
+      <button mat-raised-button (click)="sidenav.toggle()" color="black">History</button>
+      <button #htp mat-raised-button color="black" (click)="show_instructions()" class="htp">How to Play</button>
     </p>
 
     <h2>Sharenian PQ - Third Stage</h2>
     <div class="playbutton">
-      <button class="play" mat-raised-button color="accent" *ngIf="!is_playing" (click)="toggleplay()">Play</button> 
+      <button class="play" mat-raised-button color="black" *ngIf="!is_playing" (click)="toggleplay()">Play</button> 
     </div>
 
     <div *ngIf="is_playing" class="playcontent">
@@ -75,7 +75,7 @@
         </div>
       </div>
       <div class="submit">
-        <button class="submit-button" mat-raised-button color="accent" (click)="submit()">Submit Answer</button>
+        <button class="submit-button" mat-raised-button color="orange" (click)="submit()">Submit Answer</button>
       </div>
     </div>
     <div *ngIf="try_submitted" class="answers">

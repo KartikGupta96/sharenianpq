@@ -19,10 +19,10 @@ export class AppComponent implements OnInit {
   @ViewChild('historycontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
   
   items = [
-    {value: '1', viewValue: 'Medal of Valor', img: '../assets/medal.jpg'},
-    {value: '2', viewValue: 'Scroll of Wisdom', img: '../assets/scroll.jpg'},
-    {value: '3', viewValue: 'Spoiled Food', img: '../assets/food.jpg'},
-    {value: '4', viewValue: 'Jr. Necki Drink', img: '../assets/wine.jpg'}
+    {value: '1', viewValue: 'Medal of Valor', img: 'assets/medal.jpg'},
+    {value: '2', viewValue: 'Scroll of Wisdom', img: 'assets/scroll.jpg'},
+    {value: '3', viewValue: 'Spoiled Food', img: 'assets/food.jpg'},
+    {value: '4', viewValue: 'Jr. Necki Drink', img: 'assets/wine.jpg'}
   ]
 
   constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer, private resolver: ComponentFactoryResolver) { }
@@ -195,29 +195,6 @@ export class AppComponent implements OnInit {
   }
 
   private add_history(){
-    /*var template = `<div class="history_item"><div class="history_image"><img src='item1'><img src='item2'><img src='item3'><img src='item4'></div>
-    <div><p>answers</p></div></div>`;
-    console.log(typeof template);
-    var asset_locations = [];
-    var guessed_items = [this.item1,this.item2,this.item3,this.item4];
-    console.log(guessed_items.length);
-    guessed_items.forEach(element => {
-      console.log(element);
-      asset_locations.push(this.check_item(element))
-    });
-    console.log(asset_locations);
-    
-    var temp1 = template.replace("item1", asset_locations[0]);
-    var temp2 = temp1.replace("item2", asset_locations[1]);
-    var temp3 = temp2.replace("item3", asset_locations[2]);
-    var temp4 = temp3.replace("item4", asset_locations[3]);*/
-    
-    /*for (var i = 0; i < asset_locations.length; i++){
-      var temp = "item" + (i+1)
-      var entry = template.replace(temp, asset_locations[i]);
-    }*/
-
-    //this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(HistoryComponent);
     const componentRef = this.entry.createComponent(factory);
     this.componentList.push(componentRef);
@@ -249,12 +226,6 @@ export class AppComponent implements OnInit {
     componentRef.instance.attempt = this.tries;
     console.log(temp_answer.toString())
     componentRef.changeDetectorRef.detectChanges();
-    /*let element: HTMLElement = <HTMLElement>componentRef.location.nativeElement;
-    element.getElementsByClassName 
-    element.style.borderBottom = "2px";
-    element.style.margin = "auto";*/
-    //console.log(entry);
-    //this.history +=entry;
   }
 
   show_instructions(){

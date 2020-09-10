@@ -30,6 +30,7 @@ h2{
 .playbutton {
     display:flex;
     justify-content: center;
+    text-align:center;
 }
 
 .tries{
@@ -44,6 +45,7 @@ h2{
     display:flex;
     justify-content: center;
     padding-bottom: 50px;
+    text-align: center;
 }
 
 .statues{
@@ -131,3 +133,22 @@ mat-sidenav {
 h1{
     margin-bottom: 0;
 }
+
+.mat-raised-button.mat-black {
+    background-color: black;
+    color:white;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;  
+ }
+
+ .mat-raised-button.mat-orange{
+     background-color: orange;
+     color: black;
+     width: 150px;
+     height: 50px;
+     font-size: 15px;
+ }
+
+ 
+ 
