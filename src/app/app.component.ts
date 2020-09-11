@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     this.item3 = undefined;
     this.item4 = undefined;
     this.componentList.forEach((comp) => comp.destroy());
-    console.log(this.componentList.length);
+    //console.log(this.componentList.length);
     this.entry.clear();
   }
   //Function to generate a number with digits 1, 2, 3, 4
@@ -69,38 +69,38 @@ export class AppComponent implements OnInit {
   private compare_nums(number, guess){
     //console.log(typeof number);
     //console.log(typeof guess);
-    console.log("my number = " + number)
-    console.log("my guess = " + guess);
+    //console.log("my number = " + number)
+    //console.log("my guess = " + guess);
     var cowbull = [0,0]; //incorrect, correct
     var temp_number = "";
     var temp_guess = "";
-    console.log(number.length);
+    //console.log(number.length);
     for (var i=0; i<number.length; i++){
       if (number[i] == guess[i]){
         cowbull[1]+=1;
       }
       else{
        // console.log("BLAH BLAH")
-        console.log("number[i] = " + number[i]);
-        console.log("guess[i] = " + guess[i]);
+        //console.log("number[i] = " + number[i]);
+        //console.log("guess[i] = " + guess[i]);
         temp_number = temp_number + number[i];
         temp_guess = temp_guess + guess[i];
-        console.log("tempnumber = " + temp_number)
-        console.log("tempguess = " + temp_guess)
+        //console.log("tempnumber = " + temp_number)
+        //console.log("tempguess = " + temp_guess)
       }
     }
-    console.log("Outside loop tempnumber = " +temp_number);
-    console.log("outside loop tempnumber = " +temp_guess);
+    //console.log("Outside loop tempnumber = " +temp_number);
+    //console.log("outside loop tempnumber = " +temp_guess);
     for(var j=0; j<temp_guess.length;j++){
-      console.log("For loop temp_guess at j:" + temp_guess[j])
+      //console.log("For loop temp_guess at j:" + temp_guess[j])
       if (temp_number.includes(temp_guess[j])){
         cowbull[0]+= 1;
         temp_number = temp_number.replace(temp_guess[j], "0");
-        console.log("temp_number in j loop = " + temp_number);
+        //console.log("temp_number in j loop = " + temp_number);
         //console.log(temp_guess);
       }
     }
-    console.log(cowbull);
+    //console.log(cowbull);
     return cowbull;
   }
 
@@ -116,9 +116,9 @@ export class AppComponent implements OnInit {
 
   //function to check if no value was selected in the drop down.
   private check_undefined(){
-    console.log("Hello")
+    //console.log("Hello")
     if(typeof this.item1 === "undefined" || typeof this.item2 === "undefined" || typeof this.item3 === "undefined" || typeof this.item4 === "undefined"){
-      console.log("Undefined")
+      //console.log("Undefined")
       return true
     }
     else{
@@ -129,7 +129,7 @@ export class AppComponent implements OnInit {
   submit(){
     this.output_text = "";
     this.try_submitted = true;
-    console.log(this.item1)
+    //console.log(this.item1)
     if (this.check_undefined()){
       this.output_text += "You have not put all the offerings. Set the offerings before continuing!"
     }
@@ -140,28 +140,28 @@ export class AppComponent implements OnInit {
       //console.log(inc_value);
       var cowbullcount = this.compare_nums(this.num.toString(),inc_value)
       if ((cowbullcount[0] + cowbullcount[1]) == 0){
-        console.log("No Vassal Knows Of This Offering\n")
+        //console.log("No Vassal Knows Of This Offering\n")
         this.output_text += "No Vassal Knows Of This Offering"
         this.add_history()
       }
       else{
         if (cowbullcount[1] != 0){
-          console.log(cowbullcount[1].toString() + "  Agreed That The Offering Is Correct")
+          //console.log(cowbullcount[1].toString() + "  Agreed That The Offering Is Correct")
           this.output_text += cowbullcount[1].toString() + " Agreed That The Offering Is Correct"
         }
         if (cowbullcount[0] != 0){
-          console.log(cowbullcount[0].toString() + " Have Declared The Offering Incorrect")
+          //console.log(cowbullcount[0].toString() + " Have Declared The Offering Incorrect")
           this.output_text += "\n" + cowbullcount[0].toString() + " Have Declared The Offering Incorrect"
         }
         if (cowbullcount[0] + cowbullcount[1] != 4){
-          console.log(4-cowbullcount[0]-cowbullcount[1] + " Have Said It's An Unknown Offering")
+          //console.log(4-cowbullcount[0]-cowbullcount[1] + " Have Said It's An Unknown Offering")
           this.output_text += "\n" + (4-cowbullcount[0]-cowbullcount[1]) + " Have Said It's An Unknown Offering"
         }
         this.add_history()
       }
       if (cowbullcount[1] == 4){
         this.output_text = "";
-        console.log("You won after " + this.tries.toString() + " tries! The number was "+ this.num);
+        //console.log("You won after " + this.tries.toString() + " tries! The number was "+ this.num);
         this.output_text += "You won after " + this.tries.toString() + " tries! The number was "+ this.num + "\n"
         this.reset_game();
       }
@@ -198,7 +198,7 @@ export class AppComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(HistoryComponent);
     const componentRef = this.entry.createComponent(factory);
     this.componentList.push(componentRef);
-    console.log(this.componentList.length)
+    //console.log(this.componentList.length)
     componentRef.instance.item1 = this.check_item(this.item1);
     componentRef.instance.item2 = this.check_item(this.item2);
     componentRef.instance.item3 = this.check_item(this.item3);
@@ -224,7 +224,7 @@ export class AppComponent implements OnInit {
       componentRef.instance.answer3 = "";
     }
     componentRef.instance.attempt = this.tries;
-    console.log(temp_answer.toString())
+    //console.log(temp_answer.toString())
     componentRef.changeDetectorRef.detectChanges();
   }
 
