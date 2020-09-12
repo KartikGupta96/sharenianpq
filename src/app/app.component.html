@@ -81,7 +81,12 @@
     <div *ngIf="try_submitted" class="answers">
       <p style="white-space: pre;" class="answer_text">
         {{output_text}}
-      </p>
+      </p><br><br>
+      <div>
+        <div *ngIf="game_complete" class="item_sequence">
+          <br/><img src='{{item_s1}}'><img src='{{item_s2}}'><img src='{{item_s3}}'><img src='{{item_s4}}'>
+        </div>
+      </div>
     </div>
   
   </mat-sidenav-content>

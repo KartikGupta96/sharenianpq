@@ -36,6 +36,12 @@ export class AppComponent implements OnInit {
 
   output_text:String = "";
 
+  game_complete:boolean = false;
+  item_s1;
+  item_s2;
+  item_s3;
+  item_s4;
+
   item1 = this.items[1][1];
   item2 = this.items[1][1];
   item3 = this.items[1][1];
@@ -63,6 +69,47 @@ export class AppComponent implements OnInit {
       num+=digit;
     }
     return num.toString();
+  }
+
+  private generate_item_sequence(num){
+    var asset_locations = [];
+    for (var i = 0; i < num.length; i++){
+      if(num.charAt(i) == '1'){
+        asset_locations.push('assets/medal.jpg')
+      }
+      else if(num.charAt(i) == '2'){
+        asset_locations.push('assets/scroll.jpg')
+      }
+      else if (num.charAt(i) == '3') {
+        asset_locations.push('assets/food.png')
+      }
+      else if (num.charAt(i) == '4') {
+        asset_locations.push('assets/wine.jpg')
+      }
+      else{
+        return ''
+      }
+    }
+    this.item_s1 = asset_locations[0]
+    this.item_s2 = asset_locations[1]
+    this.item_s3 = asset_locations[2]
+    this.item_s4 = asset_locations[3]
+    console.log(this.item_s1 + " " + this.item_s2 + " " + this.item_s3 + " " + this.item_s4);
+  }
+  
+  //Toggles the Play button.
+  toggleplay(){
+    this.reset_game();
+    this.is_playing = true;
+    this.num = this.generate_num();
+    console.log(this.num);
+    this.generate_item_sequence(this.num);
+
+    //this.num = "2232"
+    //this.num = "1134"
+    this.try_submitted = false;
+    
+    //console.log(this.num);
   }
 
   //Function used to compare the guess to the number
@@ -104,15 +151,6 @@ export class AppComponent implements OnInit {
     return cowbull;
   }
 
-  //Toggles the Play button.
-   toggleplay(){
-    this.is_playing = true;
-    this.num = this.generate_num();
-    //this.num = "2232"
-    //this.num = "1134"
-    this.try_submitted = false;
-    //console.log(this.num);
-  }
 
   //function to check if no value was selected in the drop down.
   private check_undefined(){
@@ -162,13 +200,15 @@ export class AppComponent implements OnInit {
       if (cowbullcount[1] == 4){
         this.output_text = "";
         //console.log("You won after " + this.tries.toString() + " tries! The number was "+ this.num);
-        this.output_text += "You won after " + this.tries.toString() + " tries! The number was "+ this.num + "\n"
-        this.reset_game();
+        this.output_text += "You won after " + this.tries.toString() + " tries!\nThe item sequence was:"
+        this.is_playing = false;
+        this.game_complete = true;
       }
       else{
         if (this.tries == this.max_tries){
           this.output_text = "";
-          this.reset_game();
+          this.is_playing = false;
+          this.game_complete = true;
           this.output_text += "You have failed! Press play to try again!"
         }
       };
