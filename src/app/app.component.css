@@ -24,13 +24,14 @@ h2{
     font-family: 'vanadine';
     font-size: 70px;
     margin-bottom: 50px;
-    color: black;
+    color: white;
 }
 
 .playbutton {
     display:flex;
     justify-content: center;
     text-align:center;
+    padding-bottom: 20px;
 }
 
 .tries{
@@ -38,7 +39,7 @@ h2{
     font-size:30px;
     display:flex;
     justify-content: center;
-    color:black;
+    color:white;
     font-family:micro;
 }
 
@@ -76,7 +77,7 @@ mat-sidenav-content{
 
 .answers{
     border: 2px solid;
-    display: flex;
+/*    display: flex;*/
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -87,9 +88,22 @@ mat-sidenav-content{
     background-color:gray;
 }
 
-.item_sequence{
+.item_sequence {
+    display:block;
 }
 
+.item_sequence img{
+    border: 1px solid #ffffff;
+    padding: 10px;
+}
+
+.item_sequence p{
+    padding: 20px;
+}
+.answer_text{
+    padding-top: 20px;
+    display: block;
+}
  ::ng-deep .mat-select{
     color: white;
  }

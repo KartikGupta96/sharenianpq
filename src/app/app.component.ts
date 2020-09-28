@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
     this.componentList.forEach((comp) => comp.destroy());
     //console.log(this.componentList.length);
     this.entry.clear();
+    this.game_complete = false;
   }
   //Function to generate a number with digits 1, 2, 3, 4
   //Since numbers are not easily generated without specific digits like python
@@ -94,7 +95,7 @@ export class AppComponent implements OnInit {
     this.item_s2 = asset_locations[1]
     this.item_s3 = asset_locations[2]
     this.item_s4 = asset_locations[3]
-    console.log(this.item_s1 + " " + this.item_s2 + " " + this.item_s3 + " " + this.item_s4);
+    //console.log(this.item_s1 + " " + this.item_s2 + " " + this.item_s3 + " " + this.item_s4);
   }
   
   //Toggles the Play button.
@@ -102,7 +103,7 @@ export class AppComponent implements OnInit {
     this.reset_game();
     this.is_playing = true;
     this.num = this.generate_num();
-    console.log(this.num);
+    //console.log(this.num);
     this.generate_item_sequence(this.num);
 
     //this.num = "2232"
@@ -200,7 +201,7 @@ export class AppComponent implements OnInit {
       if (cowbullcount[1] == 4){
         this.output_text = "";
         //console.log("You won after " + this.tries.toString() + " tries! The number was "+ this.num);
-        this.output_text += "You won after " + this.tries.toString() + " tries!\nThe item sequence was:"
+        this.output_text += "You Won After " + this.tries.toString() + " Tries!\nThe Item Sequence Was:"
         this.is_playing = false;
         this.game_complete = true;
       }
@@ -209,7 +210,7 @@ export class AppComponent implements OnInit {
           this.output_text = "";
           this.is_playing = false;
           this.game_complete = true;
-          this.output_text += "You have failed! Press play to try again!"
+          this.output_text += "You have failed!\nThe Item Sequence Was:"
         }
       };
     }
