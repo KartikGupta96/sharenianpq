@@ -24,11 +24,18 @@
         <div class="left_statue"> 
           <img src="assets/left_statue.png">
           <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Select Offering</mat-label>
-              <mat-select [(value)]="item1">
-                <mat-option *ngFor="let item of items" [value]="item.value">
-                  <img src='{{item.img}}'> {{item.viewValue}}
+            <mat-form-field floatLabel="never" appearance="outline">
+              <!--<mat-label>Select Offering</mat-label>-->
+               <mat-select placeholder="Select Offering" [formControl]="form.controls.item_control" [(value)]="item1">
+                <mat-select-trigger>
+                  <div class="trigger">
+                    <img src='{{form.controls.item_control.value?.img}}'> {{form.controls.item_control.value?.viewValue}}
+                  </div>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of items" [value]="item">
+                  <div class="item_option">
+                    <img src='{{item.img}}'> {{item.viewValue}}
+                  </div>
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -37,11 +44,18 @@
         <div class="mid_left_statue">
           <img src="assets/left_mid_statue.png">
           <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Select Offering</mat-label>
-              <mat-select [(value)]="item2">
-                <mat-option *ngFor="let item of items" [value]="item.value">
-                  <img src='{{item.img}}'> {{item.viewValue}}
+            <mat-form-field floatLabel="'never'" appearance="outline">
+              <!--<mat-label floatLabel="never">Select Offering</mat-label>-->
+              <mat-select placeholder="Select Offering" [formControl]="form.controls.item_control2" [(value)]="item2">
+                <mat-select-trigger>
+                  <div class="trigger">
+                    <img src='{{form.controls.item_control2.value?.img}}'> {{form.controls.item_control2.value?.viewValue}}
+                  </div>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of items" [value]="item">
+                  <div class="item_option">
+                    <img src='{{item.img}}'> {{item.viewValue}}
+                  </div>
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -50,11 +64,18 @@
         <div class="mid_right_statue">
           <img src="assets/right_mid_statue.png">
           <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Select Offering</mat-label>
-              <mat-select [(value)]="item3">
-                <mat-option *ngFor="let item of items" [value]="item.value">
-                  <img src='{{item.img}}'> {{item.viewValue}}
+            <mat-form-field floatLabel="never" appearance="outline">
+               <!--<mat-label>Select Offering</mat-label>-->
+              <mat-select placeholder="Select Offering" [formControl]="form.controls.item_control3" [(value)]="item3">
+                <mat-select-trigger>
+                  <div class="trigger">
+                    <img src='{{form.controls.item_control3.value?.img}}'> {{form.controls.item_control3.value?.viewValue}}
+                  </div>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of items" [value]="item">
+                  <div class="item_option">
+                    <img src='{{item.img}}'> {{item.viewValue}}
+                  </div>
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -63,11 +84,18 @@
         <div class="right_statue">
           <img src="assets/right_statue.png">
           <div>
-            <mat-form-field appearance="outline">
-              <mat-label>Select Offering</mat-label>
-              <mat-select [(value)]="item4">
-                <mat-option *ngFor="let item of items" [value]="item.value">
-                  <img src='{{item.img}}'> {{item.viewValue}}
+            <mat-form-field floatLabel="never" appearance="outline">
+               <!--<mat-label>Select Offering</mat-label>-->
+              <mat-select placeholder="Select Offering" [formControl]="form.controls.item_control4" [(value)]="item4">
+                <mat-select-trigger>
+                  <div class="trigger">
+                    <img src='{{form.controls.item_control4.value?.img}}'>{{form.controls.item_control4.value?.viewValue}}
+                  </div> 
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of items" [value]="item">
+                  <div class="item_option">
+                    <img src='{{item.img}}'> {{item.viewValue}}
+                  </div>
                 </mat-option>
               </mat-select>
             </mat-form-field>

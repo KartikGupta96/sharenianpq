@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentFactory, ComponentRef } from '@angular/core';
 import { generate } from 'rxjs';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
 import { OverlayService } from './services/overlay.service';
 import { OverlayReference } from './services/overlayreference';
@@ -25,7 +25,26 @@ export class AppComponent implements OnInit {
     {value: '4', viewValue: 'Jr. Necki Drink', img: 'assets/wine.jpg'}
   ]
 
-  constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer, private resolver: ComponentFactoryResolver) { }
+  //Now that we are using the select-trigger we need to make a form control to be able to show the image of the item and text.
+  form: FormGroup;
+  item_control: FormControl;
+  item_control2: FormControl;
+  item_control3:FormControl;
+  item_control4:FormControl;
+
+  constructor(private previewDialog: OverlayService, private sanitizer: DomSanitizer, private resolver: ComponentFactoryResolver) {
+    this.item_control = new FormControl();
+    this.item_control2 = new FormControl();
+    this.item_control3 = new FormControl();
+    this.item_control4 = new FormControl();
+    this.form = new FormGroup({
+      item_control:this.item_control,
+      item_control2:this.item_control2,
+      item_control3:this.item_control3,
+      item_control4:this.item_control4,
+    });
+   }
+
   is_playing:boolean = false;
   tries = 0;
   max_tries = 7;
@@ -59,6 +78,7 @@ export class AppComponent implements OnInit {
     //console.log(this.componentList.length);
     this.entry.clear();
     this.game_complete = false;
+    this.form.reset();
   }
   //Function to generate a number with digits 1, 2, 3, 4
   //Since numbers are not easily generated without specific digits like python
@@ -72,6 +92,7 @@ export class AppComponent implements OnInit {
     return num.toString();
   }
 
+  //function to create the item sequence we will present at the end of the run.
   private generate_item_sequence(num){
     var asset_locations = [];
     for (var i = 0; i < num.length; i++){
@@ -175,7 +196,8 @@ export class AppComponent implements OnInit {
     else{
       this.tries++;
       this.output_text = "";
-      var inc_value = this.item1 + this.item2 + this.item3+ this.item4;
+      console.log(this.item3);
+      var inc_value = this.item1.value + this.item2.value + this.item3.value + this.item4.value;
       //console.log(inc_value);
       var cowbullcount = this.compare_nums(this.num.toString(),inc_value)
       if ((cowbullcount[0] + cowbullcount[1]) == 0){
@@ -240,10 +262,10 @@ export class AppComponent implements OnInit {
     const componentRef = this.entry.createComponent(factory);
     this.componentList.push(componentRef);
     //console.log(this.componentList.length)
-    componentRef.instance.item1 = this.check_item(this.item1);
-    componentRef.instance.item2 = this.check_item(this.item2);
-    componentRef.instance.item3 = this.check_item(this.item3);
-    componentRef.instance.item4 = this.check_item(this.item4);
+    componentRef.instance.item1 = this.check_item(this.item1.value);
+    componentRef.instance.item2 = this.check_item(this.item2.value);
+    componentRef.instance.item3 = this.check_item(this.item3.value);
+    componentRef.instance.item4 = this.check_item(this.item4.value);
     
     var temp_answer = this.output_text;
     var answers = temp_answer.split("\n")
