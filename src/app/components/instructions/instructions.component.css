@@ -34,3 +34,13 @@ margin-right: auto;
 .right_title_images img:nth-last-of-type(1){
     padding-left: 5px;
 }
+
+.bottom_paragraph {
+    display:flex;
+}
+
+.bottom_paragraph img{
+    margin-left:auto;
+    float: right;
+    margin-top:75px;
+}
