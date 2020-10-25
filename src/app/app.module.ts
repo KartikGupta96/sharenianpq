@@ -42,7 +42,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { OverlayService } from './services/overlay.service';
 import { HistoryComponent } from './components/history/history.component';
-import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -91,10 +90,7 @@ import { AdsenseModule } from 'ng2-adsense';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    OverlayModule,
-    AdsenseModule.forRoot({
-      adClient: 'ca-pub-2646875546354466'
-    })
+    OverlayModule
   ],
   providers: [Title,
     OverlayService,          
