@@ -1,0 +1,20 @@
+body {
+    background-image: url("./background4.png");
+    background-size: 100% 100%;
+}
+
+.topbuttons {
+    margin: 0;
+	padding: 0;
+}
+
+.htp {  
+    float:right;
+}
+
+.playbutton {
+    display:flex;
+    justify-content: center;
+    text-align:center;
+    padding-bottom: 20px;
+}
