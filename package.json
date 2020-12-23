@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/stagethree/server/main.js",
     "build:ssr": "ng build --prod && ng run stagethree:server:production",
     "prerender": "ng run stagethree:prerender",
-    "start:heroku": "node dist/server",
+    "start:heroku": "node dist/stagethree/server",
     "postinstall": "npm run build:ssr"
   },
   "private": true,
