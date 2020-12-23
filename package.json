@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/stagethree/server/main.js",
     "build:ssr": "ng build --prod && ng run stagethree:server:production",
     "prerender": "ng run stagethree:prerender",
-    "start:heroku": "node dist/stagethree/server",
+    "start:heroku": "npm run serve:ssr",
     "postinstall": "npm run build:ssr"
   },
   "private": true,
