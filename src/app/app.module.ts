@@ -52,7 +52,7 @@ import { AdsenseModule } from 'ng2-adsense';
     HistoryComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
